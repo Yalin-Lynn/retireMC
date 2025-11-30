@@ -1,0 +1,37 @@
+---
+title: "README"
+output: html_document
+---
+
+retireMC
+
+Monte Carlo tools for retirement planning.
+
+Installation (development)
+
+# devtools required
+# install.packages("devtools")
+```{r}
+devtools::install_local("path/to/retireMC") # Use devtools::install_local for local install
+
+```
+
+
+Quick example
+
+```{r}
+library(retireMC)
+res <- run_mc(initial = 1e6, n_years = 30, n_sims = 2000,
+              withdraw = 60000, infl_rate = 0.02,
+              returns_args = list(model="gbm", mu=0.07, sigma=0.15, seed=123))
+
+# Check success rate
+res$metrics$success_rate
+
+# Plot results
+plot_percentile_bands(res$wealth)
+```
+
+Vignette
+
+For a detailed guide, see: vignette("introduction", package = "retireMC")

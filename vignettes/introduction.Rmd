@@ -1,0 +1,94 @@
+---
+title: "Introduction to retireMC"
+author: "Yalin Zhang"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to retireMC}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+library(retireMC)
+```
+
+Introduction
+The retireMC package provides a set of methods based on Monte Carlo simulation for analyzing and planning retirement wealth trajectories. It allows users to simulate investment returns under different market models, calculate retirement success probabilities (Ruin Probability), and generate intuitive percentile charts.
+
+Core Function: run_mc()
+run_mc() is the core function of the package, integrating return simulation, wealth path calculation, and result metrics computation.
+
+Example 1: Geometric Brownian Motion (GBM) Simulation
+By default, run_mc uses the Geometric Brownian Motion model, which is suitable for long-term stock market simulation.
+
+Assumptions:
+
+Initial wealth: $1,000,000
+
+Retirement period: 30 years
+
+Annual withdrawal (inflation-adjusted): $60,000
+
+Expected annual return (mu): 7%
+
+Volatility (sigma): 15%
+```{r}
+# Set simulation parameters
+initial_wealth <- 1000000
+retirement_years <- 30
+annual_withdrawal <- 60000
+
+# Execute simulation
+gbm_results <- run_mc(
+    initial = initial_wealth,
+    n_years = retirement_years,
+    n_sims = 5000,
+    withdraw = annual_withdrawal
+)
+
+# Print success rate
+success_rate <- gbm_results$metrics$success_rate * 100
+cat(paste("Simulation Success Rate:", round(success_rate, 2), "%", "\n"))
+
+# Plot results
+plot_percentile_bands(gbm_results$wealth)
+```
+Example 2: Using Historical Data (Empirical Resampling)
+You can also use custom historical return data for empirical resampling simulation, which more closely reflects real market conditions.
+
+We'll use the built-in sample S&P 500 annual return data.
+
+```{r}
+# Load built-in S&P 500 sample data
+data_path <- system.file("extdata", "sp500_annual_sample.csv", package = "retireMC")
+sp500_data <- read.csv(data_path)
+
+# Extract returns vector
+historical_returns <- sp500_data$return
+
+# Execute empirical resampling simulation
+empirical_results <- run_mc(
+    initial = 1000000,
+    n_years = 30,
+    n_sims = 5000,
+    withdraw = 60000,
+    returns_args = list(
+        model = "empirical", 
+        empirical_returns = historical_returns
+    )
+)
+
+# Print success rate
+success_rate_emp <- empirical_results$metrics$success_rate * 100
+cat(paste("Empirical Resampling Success Rate:", round(success_rate_emp, 2), "%", "\n"))
+
+# Plot results
+library(dplyr)
+plot_percentile_bands(empirical_results$wealth)
+```
+

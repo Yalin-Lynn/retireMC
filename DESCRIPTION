@@ -1,0 +1,28 @@
+Package: retireMC
+Type: Package
+Title: Monte Carlo Tools for Retirement Planning
+Version: 0.1.0
+Authors@R: 
+    person(given = "Yalin", 
+           family = "Zhang", 
+           email = "yzhang130@student.gsu.edu", 
+           role = c("aut", "cre"))
+Description: Simulate retirement wealth paths using Monte Carlo methods and compute ruin probabilities, percentiles, and visualization tools. Includes vignette and unit tests.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Depends: 
+    R (>= 4.0)
+Imports:
+    stats,
+    ggplot2,
+    tibble,
+    dplyr,
+    tidyr,
+    magrittr
+Suggests:
+    testthat,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 7.3.3
