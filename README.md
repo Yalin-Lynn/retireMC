@@ -1,8 +1,3 @@
----
-title: "README"
-output: html_document
----
-
 # retireMC: Monte Carlo Retirement Planning in R
 
 An R package for stochastic retirement planning using Monte Carlo simulation. Quantifies sequence-of-returns risk and provides probabilistic retirement outcomes.
