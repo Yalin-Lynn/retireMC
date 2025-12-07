@@ -1,5 +1,10 @@
 # retireMC: Monte Carlo Retirement Planning in R
+## 🆕 Latest Updates
 
+**2025-12-06**  
+- Updated S&P 500 dataset to the latest version  
+- Updated vignette with new examples and improved usage guide
+  
 An R package for stochastic retirement planning using Monte Carlo simulation. Quantifies sequence-of-returns risk and provides probabilistic retirement outcomes.
 
 ## Installation
@@ -72,7 +77,7 @@ plot_percentile_bands(results$wealth)
 ### Using Historical Data
 
 ```{r}
-# Use S&P 500 historical returns (2000-2009)
+# Use updated S&P 500 historical returns(1928-2023)
 sp500_returns <- sp500_annual_sample()
 
 results_historical <- run_mc(
@@ -159,19 +164,26 @@ print(full_data)
 
 ### Data
 
-The package includes annual S&P 500 returns from 2000-2009:
+The package includes annual S&P 500 returns from 1928-2023:
 
-Year	Return
-2000	-9.3%
-2001	-11.9%
-2002	-22.3%
-2003	+26.8%
-2004	+10.3%
-2005	+4.1%
-2006	+15.8%
-2007	+5.7%
-2008	-37.0%
-2009	+25.8%
+| Year | Return |
+|------|--------|
+| 1928 | 0.3788 |
+| 1929 | -0.1190 |
+| 1930 | -0.2848 |
+| 1931 | -0.4706 |
+| 1932 | -0.1477 |
+| 1933 | 0.4407 |
+| 1934 | -0.0471 |
+| 1935 | 0.4136 |
+| 1936 | 0.2792 |
+| 1937 | -0.3859 |
+| 1938 | 0.2454 |
+| 1939 | -0.0517 |
+| 1940 | -0.1508 |
+...
+| 2023 | 0.1153 |
+
 
 ### Examples
 
@@ -233,7 +245,7 @@ $$
 Historical returns are sampled with replacement to preserve actual market patterns including volatility clustering and tail events.
 
 ### Package Structure
-
+```
 retireMC/
 ├── R/
 │   ├── simulate_returns.R
@@ -243,11 +255,14 @@ retireMC/
 │   ├── plotting.R
 │   ├── utils.R
 │   └── globals.R
+│   └──sp500_annual_sample.R
+│   └──data_prep.R
 ├── inst/extdata/
-│   └── sp500_annual_sample.csv
+│   └── sp500_data.csv
 ├── man/
 │   └── (documentation files)
 ├── tests/
 │   └── testthat.R
 └── vignettes/
     └── introduction.Rmd
+```
