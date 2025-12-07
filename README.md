@@ -46,7 +46,7 @@ Comprehensive Risk Metrics: Success rates, ruin probabilities, wealth distributi
 
 Professional Visualization: Percentile bands and trajectory plots
 
-Historical Data: Built-in S&P 500 data (2000-2009) for empirical analysis
+Historical Data: Built-in S&P 500 data (1928-2023) for empirical analysis
 
 ### Quick Start
 
