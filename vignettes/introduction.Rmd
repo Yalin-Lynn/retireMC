@@ -64,9 +64,8 @@ You can also use custom historical return data for empirical resampling simulati
 We'll use the built-in sample S&P 500 annual return data.
 
 ```{r}
-# Load built-in S&P 500 sample data
-data_path <- system.file("extdata", "sp500_annual_sample.csv", package = "retireMC")
-sp500_data <- read.csv(data_path)
+# Load built-in processed S&P 500 data (.rda)
+data("sp500_data", package = "retireMC")
 
 # Extract returns vector
 historical_returns <- sp500_data$return
@@ -88,7 +87,6 @@ success_rate_emp <- empirical_results$metrics$success_rate * 100
 cat(paste("Empirical Resampling Success Rate:", round(success_rate_emp, 2), "%", "\n"))
 
 # Plot results
-library(dplyr)
 plot_percentile_bands(empirical_results$wealth)
 ```
 

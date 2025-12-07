@@ -11,6 +11,7 @@ Description: Simulate retirement wealth paths using Monte Carlo methods and comp
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+LazyDataCompression: xz
 Depends: 
     R (>= 4.0)
 Imports:

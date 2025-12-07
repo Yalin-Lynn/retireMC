@@ -28,7 +28,7 @@ simulate_returns(
 
 \item{dt}{numeric time-step in years (default 1)}
 
-\item{empirical_returns}{numeric vector of returns used when model=="empirical" (e.g., c(0.10, -0.05, ...))}
+\item{empirical_returns}{numeric vector of returns used when model=="empirical"}
 
 \item{seed}{integer seed for reproducibility (optional)}
 }
@@ -37,7 +37,4 @@ matrix of gross returns (n_years x n_sims); each entry is (1 + r_t)
 }
 \description{
 Simulate returns (GBM or empirical resampling)
-}
-\examples{
-simulate_returns(30, 1000, model = "gbm", mu = 0.07, sigma = 0.15)
 }
